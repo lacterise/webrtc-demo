@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Room</title>
+    <link rel="stylesheet" href="meeting-room.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.0/peerjs.min.js"></script>
+</head>
+<body>
+    <div class="meeting-container">
+        <!-- Top Bar -->
+        <header class="meeting-header">
+            <div class="meeting-info">
+                <div class="meeting-id">
+                    <i class="fas fa-video"></i>
+                    <span id="meeting-id-display">Meeting ID: Loading...</span>
+                </div>
+                <div class="host-ip">
+                    <i class="fas fa-server"></i>
+                    <span id="host-ip-display">Host IP: Loading...</span>
+                </div>
+                <div class="peer-status">
+                    <i class="fas fa-wifi"></i>
+                    <span id="peer-connection-status">Connecting...</span>
+                </div>
+            </div>
+            
+            <div class="header-controls">
+                <button class="header-btn" id="participants-toggle">
+                    <i class="fas fa-users"></i>
+                    <span id="participant-count">1</span>
+                </button>
+                <div class="connected-ips" id="connected-ips" title="Connected IPs">
+                    IPs: -
+                </div>
+                <button class="header-btn" id="settings-btn">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="meeting-main">
+            <!-- Participants Sidebar -->
+            <aside class="participants-sidebar" id="participants-sidebar">
+                <div class="sidebar-header">
+                    <h3>Participants</h3>
+                    <button class="close-sidebar" id="close-sidebar">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="participants-list" id="participants-list">
+                    
+                </div>
+            </aside>
+
+            <!-- Video Grid -->
+            <section class="video-grid" id="video-grid">
+                <!-- Local Video -->
+                <div class="video-tile local-video" id="local-video-tile">
+                    <video id="local-video" autoplay muted playsinline></video>
+                    <div class="video-overlay">
+                        <div class="user-info">
+                            <span class="username" id="local-username">You</span>
+                            <div class="video-controls">
+                                <button class="control-btn mute-btn" id="local-mute" title="Mute/Unmute">
+                                    <i class="fas fa-microphone"></i>
+                                </button>
+                                <button class="control-btn video-btn" id="local-video-toggle" title="Camera On/Off">
+                                    <i class="fas fa-video"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Remote videos will be added here dynamically -->
+            </section>
+        </main>
+
+        <!-- Bottom Controls -->
+        <footer class="meeting-controls">
+            <div class="control-group">
+                <button class="control-btn mute-btn" id="mute-btn" title="Mute/Unmute">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <button class="control-btn video-btn" id="video-btn" title="Camera On/Off">
+                    <i class="fas fa-video"></i>
+                </button>
+                <button class="control-btn share-btn" id="share-btn" title="Share Screen">
+                    <i class="fas fa-desktop"></i>
+                </button>
+                <button class="control-btn chat-btn" id="chat-btn" title="Chat">
+                    <i class="fas fa-comments"></i>
+                </button>
+            </div>
+            
+            <div class="control-group">
+                <button class="control-btn end-btn" id="end-btn" title="End Meeting">
+                    <i class="fas fa-phone-slash"></i>
+                </button>
+            </div>
+        </footer>
+
+        <!-- Chat Panel -->
+        <aside class="chat-panel" id="chat-panel">
+            <div class="chat-header">
+                <h3>Chat</h3>
+                <button class="close-chat" id="close-chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <!-- Chat messages will be added here -->
+            </div>
+            <div class="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Type a message...">
+                <button id="send-message">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>Connecting to meeting...</h2>
+            <p id="loading-message">Setting up your camera and microphone</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="meeting-room.js"></script>
+</body>
+</html>
